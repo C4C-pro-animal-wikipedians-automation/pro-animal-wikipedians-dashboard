@@ -67,6 +67,7 @@
     "@exalabs/ai-sdk": "^1.0.4",
     "@inertiajs/react": "^2.2.17",
     "@vinejs/vine": "^3.0.1",
+    "adonisjs-scheduler": "^2.6.4",
     "ai": "6.0.0-beta.99",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
