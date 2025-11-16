@@ -16,6 +16,8 @@ export default class Task extends BaseModel {
   @column()
   declare news_article_id: number;
 
+  @column()
+  declare completed: boolean;
 
   @belongsTo(() => NewsArticle, {
     foreignKey: 'news_article_id'

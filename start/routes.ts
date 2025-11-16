@@ -7,6 +7,9 @@
 |
 */
 
+import TasksController from '#controllers/tasks_controller';
 import router from '@adonisjs/core/services/router'
 
-router.on('/').render('pages/home')
+router.get('/', [TasksController, 'show']);
+router.post('/task/:id/complete', [TasksController, 'markCompleted']);
+

@@ -5,6 +5,10 @@ import { type HasMany } from '@adonisjs/lucid/types/relations';
 
 export default class NewsArticle extends BaseModel {
   protected tableName = 'news_articles';
+
+  public static $with = ['posts'];
+  public static with = ['posts']
+
   @column({ isPrimary: true })
   declare id: number
 
@@ -21,6 +25,9 @@ export default class NewsArticle extends BaseModel {
     foreignKey: 'news_article_id'
   })
   declare tasks: HasMany<typeof Task>
+
+  @column()
+  declare date: DateTime | null;
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
