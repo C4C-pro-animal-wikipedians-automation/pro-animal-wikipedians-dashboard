@@ -231,7 +231,7 @@ Content: "Researchers at Purdue University published a study in Frontiers in Psy
 },
 {
   "task_name": "Add pig video game research to Animal cognition",
-  "task_description": "Include 2024 Purdue study on pigs playing video games in the section on farm animal cognition or comparative cognition. Source: Frontiers in Psychology study + Guardian coverage [URLs]. Suggested wording: 'Studies have shown pigs capable of learning to operate joysticks to play video games, demonstrating problem-solving abilities comparable to some primates in similar tasks.' This adds to existing farm animal cognition research.",
+  "task_description": "Include 2024 Purdue study on pigs playing video games in the section on farm animal cognition or comparative cognition. Source: Frontiers in Psychology study + Guardian coverage [https://exampleurl.com]. Suggested wording: 'Studies have shown pigs capable of learning to operate joysticks to play video games, demonstrating problem-solving abilities comparable to some primates in similar tasks.' This adds to existing farm animal cognition research.",
   "wikipedia_article_url": "https://en.wikipedia.org/wiki/Animal_cognition",
   "relevance_flag": true
 }]
@@ -252,6 +252,7 @@ Content: "Researchers at Purdue University published a study in Frontiers in Psy
 Remember:
 - You're supporting the animal rights movement's Wikipedia presence
 - But you must maintain Wikipedia's neutrality standards
+- You can use markdown to reference urls
 - The goal is to improve factual coverage, not to promote a viewpoint
 - Strong, well-sourced edits are more durable than weak, biased ones
 - Focus on information gaps and outdated content in existing articles
