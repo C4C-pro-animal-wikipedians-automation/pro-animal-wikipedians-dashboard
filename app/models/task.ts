@@ -14,6 +14,9 @@ export default class Task extends BaseModel {
   declare description: string | null;
 
   @column()
+  declare wikipedia_url: string | null;
+
+  @column()
   declare news_article_id: number;
 
   @column()

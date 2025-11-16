@@ -38,9 +38,6 @@ const TasksPanel: React.FC<TasksPanelProps> = ({ selectedArticle, onTaskToggle }
     <div className="flex-1 bg-background flex flex-col">
       <div className="p-6 bg-surface border-b border-border">
         <div className="flex flex-col gap-2">
-          <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded font-semibold uppercase self-start">
-            category
-          </span>
           <h3 className="text-xl font-semibold text-text-primary leading-tight">
             {selectedArticle.title}
           </h3>
@@ -64,7 +61,7 @@ const TasksPanel: React.FC<TasksPanelProps> = ({ selectedArticle, onTaskToggle }
         }).map((task) => {
           const isExpanded = expandedTasks.has(task.id);
           const hasDescription = task.description && task.description.trim().length > 0;
-          
+
           return (
             <div
               key={task.id}

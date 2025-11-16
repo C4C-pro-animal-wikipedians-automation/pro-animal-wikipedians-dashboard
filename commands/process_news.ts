@@ -290,6 +290,7 @@ Your output directly powers the editor dashboard that coordinates Wikipedia impr
         Task.create({
           task: task.task_name,
           description: task.task_description,
+          wikipedia_url: task.wikipedia_article_url,
           news_article_id: article.id,
         });
       }

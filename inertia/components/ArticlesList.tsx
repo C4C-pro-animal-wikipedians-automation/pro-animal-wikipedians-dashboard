@@ -19,7 +19,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, selectedArticle, 
   return (
     <div className="w-96 bg-surface border-r border-border flex flex-col">
       <h2 className="p-6 text-lg font-semibold border-b border-border text-text-primary">
-        News Articles
+        Wikipedians Dashboard
       </h2>
       <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
         {articles.map((article) => {
@@ -41,9 +41,6 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, selectedArticle, 
               `}
             >
               <div className="flex justify-between items-center mb-2">
-                <span className="text-xs px-2 py-1 bg-primary/20 text-primary rounded font-semibold uppercase">
-                  category
-                </span>
                 <span className="text-xs text-text-secondary">
                   {article.date?.toFormat('yyyy LLL dd')}
                 </span>
