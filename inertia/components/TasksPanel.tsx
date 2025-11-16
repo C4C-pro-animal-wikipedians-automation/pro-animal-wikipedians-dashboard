@@ -1,5 +1,5 @@
 import NewsArticle from '#models/news_article';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface TasksPanelProps {
   selectedArticle: NewsArticle | null;
@@ -8,6 +8,10 @@ interface TasksPanelProps {
 
 const TasksPanel: React.FC<TasksPanelProps> = ({ selectedArticle, onTaskToggle }) => {
   const [expandedTasks, setExpandedTasks] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    setExpandedTasks(new Set());
+  }, [selectedArticle?.id]);
 
   const toggleTaskExpansion = (taskId: number) => {
     const newExpanded = new Set(expandedTasks);
@@ -53,7 +57,11 @@ const TasksPanel: React.FC<TasksPanelProps> = ({ selectedArticle, onTaskToggle }
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-3 custom-scrollbar">
-        {selectedArticle.tasks && selectedArticle.tasks.map((task) => {
+        {selectedArticle.tasks && [...selectedArticle.tasks].sort((a, b) => {
+          if (a.completed && !b.completed) return 1;
+          if (!a.completed && b.completed) return -1;
+          return 0;
+        }).map((task) => {
           const isExpanded = expandedTasks.has(task.id);
           const hasDescription = task.description && task.description.trim().length > 0;
           
