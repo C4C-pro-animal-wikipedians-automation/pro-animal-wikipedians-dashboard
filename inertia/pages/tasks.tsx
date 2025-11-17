@@ -1,7 +1,7 @@
 import NewsArticle from "#models/news_article";
 import { useCallback, useMemo, useState } from "react";
-import ArticlesList from "../components/ArticlesList";
-import TasksPanel from "../components/TasksPanel";
+import ArticlesList from "../components/ArticlesList.js";
+import TasksPanel from "../components/TasksPanel.js";
 import Task from "#models/task";
 import axios from 'axios';
 import { router } from "@inertiajs/react";
@@ -18,7 +18,7 @@ const Tasks: React.FC<{ articles: NewsArticle[] }> = ({ articles }) => {
       <ArticlesList
         articles={articles}
         selectedArticle={article}
-        onArticleSelect={(newArticle) => setSelectedArticle(newArticle.id)}
+        onArticleSelect={(newArticle: NewsArticle) => setSelectedArticle(newArticle.id)}
       />
       <TasksPanel
         selectedArticle={article}

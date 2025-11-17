@@ -45,7 +45,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({ articles, selectedArticle, 
                   {article.date?.toFormat('yyyy LLL dd')}
                 </span>
               </div>
-              <h3 className="text-sm font-medium leading-snug text-text-primary">
+              <h3 className="text-sm font-medium leading-snug">
                 {article.title}
               </h3>
               {totalCount > 0 && (

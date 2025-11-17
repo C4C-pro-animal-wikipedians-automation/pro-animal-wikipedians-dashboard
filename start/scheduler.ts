@@ -1,4 +1,3 @@
-
 import scheduler from 'adonisjs-scheduler/services/main'
 
 scheduler.command('get:news').everyTenMinutes()

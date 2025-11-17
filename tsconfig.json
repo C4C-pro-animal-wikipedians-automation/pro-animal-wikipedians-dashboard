@@ -2,6 +2,9 @@
   "extends": "@adonisjs/tsconfig/tsconfig.app.json",
   "compilerOptions": {
     "rootDir": "./",
-    "outDir": "./build"
+    "outDir": "./build",
+    "jsx": "preserve",
+    "types": ["@types/node", "@types/react", "@types/react-dom"],
+    "allowImportingTsExtensions": false
   }
 }

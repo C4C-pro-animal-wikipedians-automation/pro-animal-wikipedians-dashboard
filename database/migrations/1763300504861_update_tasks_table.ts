@@ -5,13 +5,13 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.table('tasks', (table) => {
-      table.boolean('completed').defaultTo(false);
-    });
+      table.boolean('completed').defaultTo(false)
+    })
   }
 
   async down() {
     this.schema.table('tasks', (table) => {
-      table.dropColumn('completed');
-    });
+      table.dropColumn('completed')
+    })
   }
 }

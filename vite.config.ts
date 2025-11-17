@@ -2,9 +2,11 @@ import { defineConfig } from 'vite'
 import adonisjs from '@adonisjs/vite/client'
 import inertia from '@adonisjs/inertia/client'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [
+    tailwindcss(),
     adonisjs({
       /**
        * Entrypoints of your application. Each entrypoint will
@@ -19,6 +21,6 @@ export default defineConfig({
     }),
     inertia({ ssr: { enabled: true, entrypoint: 'inertia/app/ssr.tsx' } }),
     react(),
-    adonisjs({ entrypoints: ['inertia/app/app.tsx'], reload: ['resources/views/**/*.edge'] })
+    adonisjs({ entrypoints: ['inertia/app/app.tsx'], reload: ['resources/views/**/*.edge'] }),
   ],
 })

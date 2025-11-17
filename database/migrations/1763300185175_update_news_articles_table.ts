@@ -5,14 +5,13 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.table('news_articles', (table) => {
-      table.date('date').nullable();
-    });
+      table.date('date').nullable()
+    })
   }
 
   async down() {
     this.schema.table('news_articles', (table) => {
-      table.dropColumn('date');
-    });
-
+      table.dropColumn('date')
+    })
   }
 }

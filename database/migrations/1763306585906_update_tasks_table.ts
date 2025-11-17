@@ -5,13 +5,13 @@ export default class extends BaseSchema {
 
   async up() {
     this.schema.table('tasks', (table) => {
-      table.string('wikipedia_url').nullable();
-    });
+      table.string('wikipedia_url').nullable()
+    })
   }
 
   async down() {
     this.schema.table('tasks', (table) => {
-      table.dropColumn('wikipedia_url');
-    });
+      table.dropColumn('wikipedia_url')
+    })
   }
 }

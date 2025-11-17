@@ -1,33 +1,33 @@
-import NewsArticle from '#models/news_article';
-import Task from '#models/task';
-import env from '#start/env';
+import NewsArticle from '#models/news_article'
+import Task from '#models/task'
+import env from '#start/env'
 import { BaseCommand } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
-import { createOpenAI } from '@ai-sdk/openai';
-import { generateText, stepCountIs  } from 'ai'
-import { z } from 'zod';
+import { createOpenAI } from '@ai-sdk/openai'
+import { generateText } from 'ai'
+import { z } from 'zod'
 
-
-const resultSchema = z.array(z.object({
-  'task_name': z.string(),
-  'task_description': z.string(),
-  'wikipedia_article_url': z.url(),
-  'relevance_flag': z.boolean(),
-}));
+const resultSchema = z.array(
+  z.object({
+    task_name: z.string(),
+    task_description: z.string(),
+    wikipedia_article_url: z.url(),
+    relevance_flag: z.boolean(),
+  })
+)
 
 export default class ProcessNews extends BaseCommand {
   static commandName = 'process:news'
   static description = ''
 
   static options: CommandOptions = {
-    startApp: true
+    startApp: true,
   }
 
   async run() {
-
     const openai = createOpenAI({
-      apiKey: env.get('OPENAI_API_KEY')
-    });
+      apiKey: env.get('OPENAI_API_KEY'),
+    })
 
     const systemPrompt = `# Wikipedia Task Extraction from News Articles - System Prompt
 
@@ -257,9 +257,9 @@ Remember:
 - Strong, well-sourced edits are more durable than weak, biased ones
 - Focus on information gaps and outdated content in existing articles
 
-Your output directly powers the editor dashboard that coordinates Wikipedia improvement efforts across the movement.`;
-    const unprocessedArticles = await NewsArticle.query().has('tasks', '=', 0);
-    for (const article of unprocessedArticles){
+Your output directly powers the editor dashboard that coordinates Wikipedia improvement efforts across the movement.`
+    const unprocessedArticles = await NewsArticle.query().has('tasks', '=', 0)
+    for (const article of unprocessedArticles) {
       const result = await generateText({
         model: openai('gpt-4o'),
         tools: {
@@ -267,34 +267,33 @@ Your output directly powers the editor dashboard that coordinates Wikipedia impr
         },
         // stopWhen: stepCountIs(5),
         system: systemPrompt,
-        prompt: article.title + '\n\n\n' + article.text
-      });
-      const jsonArray = result.text.match(/\[[\s\S]*\]/gm)?.[0];
-      if(!jsonArray) continue;
-      let tasks = '';
+        prompt: article.title + '\n\n\n' + article.text,
+      })
+      const jsonArray = result.text.match(/\[[\s\S]*\]/gm)?.[0]
+      if (!jsonArray) continue
+      let tasks = ''
       try {
-          tasks = JSON.parse(jsonArray);
-        } catch{
-        console.log(jsonArray);
-      }
-      let parsed: z.infer<typeof resultSchema> | null = null;
-      try {
-        parsed = resultSchema.parse(tasks);
+        tasks = JSON.parse(jsonArray)
       } catch {
-        console.log(tasks);
+        console.log(jsonArray)
       }
-      if (!parsed) continue;
-      for(const task of parsed){
-        console.log('creating task' + task.task_name);
-        if(!task.relevance_flag) continue;
+      let parsed: z.infer<typeof resultSchema> | null = null
+      try {
+        parsed = resultSchema.parse(tasks)
+      } catch {
+        console.log(tasks)
+      }
+      if (!parsed) continue
+      for (const task of parsed) {
+        console.log('creating task ' + task.task_name)
+        if (!task.relevance_flag) continue
         Task.create({
           task: task.task_name,
           description: task.task_description,
           wikipedia_url: task.wikipedia_article_url,
           news_article_id: article.id,
-        });
+        })
       }
     }
-
   }
 }

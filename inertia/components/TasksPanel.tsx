@@ -133,10 +133,13 @@ const TasksPanel: React.FC<TasksPanelProps> = ({ selectedArticle, onTaskToggle }
               </div>
 
               {hasDescription && isExpanded && (
+                <div className="flex flex-col gap-3">
+                { task.wikipedia_url && <a href={task.wikipedia_url} target="_blank" className="text-blue-500">{task.wikipedia_url}</a> }
                 <div className="px-4 pb-4 border-t border-border/50 mt-2 pt-3">
                   <p className="text-sm text-text-secondary leading-relaxed">
                     {task.description}
                   </p>
+                </div>
                 </div>
               )}
             </div>

@@ -6,21 +6,21 @@ import { hydrateRoot } from 'react-dom/client'
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 
-const appName = import.meta.env.VITE_APP_NAME || 'AdonisJS'
+const appName = (import.meta as any).env.VITE_APP_NAME || 'AdonisJS'
 
 createInertiaApp({
   progress: { color: '#5468FF' },
 
-  title: (title) => `${title} - ${appName}`,
+  title: (title: string) => `${title} - ${appName}`,
 
-  resolve: (name) => {
+  resolve: (name: string) => {
     return resolvePageComponent(
       `../pages/${name}.tsx`,
-      import.meta.glob('../pages/**/*.tsx'),
+      (import.meta as any).glob('../pages/**/*.tsx'),
     )
   },
 
-  setup({ el, App, props }) {
+  setup({ el, App, props }: { el: any, App: any, props: any }) {
     
     hydrateRoot(el, <App {...props} />)
     
